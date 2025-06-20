@@ -3,8 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Matakuliah;
 
-class MataKuliah extends Controller
+class MataKuliahController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -27,7 +28,13 @@ class MataKuliah extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'nama_matakuliah' => 'required|string|max:255'
+        ]);
+
+        $Matakuliah = Matakuliah::create([
+            'nama_matakuliah' => $request->nama_matakuliah
+        ]);
     }
 
     /**
